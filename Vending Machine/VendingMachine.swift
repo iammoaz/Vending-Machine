@@ -6,10 +6,18 @@
 //  Copyright © 2017 Muhammad Moaz. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum VendingSelection: String {
     case soda, dietSoda, chips, cookie, sandwich, wrap, candyBar, popTart, water, fruitJuice, sportsDrink, gum
+    
+    func icon() -> UIImage {
+        guard let image = UIImage(named: self.rawValue.capitalized) else {
+            return #imageLiteral(resourceName: "Default")
+        }
+        
+        return image
+    }
 }
 
 enum InventoryError: Error {

@@ -73,7 +73,8 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VendingItemCell.reuseIdentifier, for: indexPath) as? VendingItemCell else { fatalError() }
-        
+        let item = vendingMachine.selection[indexPath.row]
+        cell.iconView.image = item.icon()
         return cell
     }
 }
