@@ -183,6 +183,9 @@
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="PURCHASE"/>
+                                        <connections>
+                                            <action selector="purchase" destination="BYZ-38-t0r" eventType="touchUpInside" id="9fi-Fd-igY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

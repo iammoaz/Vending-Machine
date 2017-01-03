@@ -43,6 +43,10 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         setupCollectionViewCells()
+        
+        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+        totalLabel.text = "$00.00"
+        priceLabel.text = "0.00"
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +70,12 @@ class ViewController: UIViewController {
         collectionView.collectionViewLayout = layout
     }
     
+    func updateDisplay() {
+        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+        totalLabel.text = "$00.00"
+        priceLabel.text = "0.00"
+    }
+    
     // MARK: - Vending Machine
     @IBAction func purchase() {
         guard let currentSelection = currentSelection else {
@@ -75,8 +85,14 @@ class ViewController: UIViewController {
         
         do {
             try vendingMachine.vend(selection: currentSelection, quantity: quantity)
+            updateDisplay()
         } catch let error {
             print(error)
+        }
+        
+        if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            updateCell(having: indexPath, selected: false)
         }
     }
 }
@@ -101,6 +117,12 @@ extension ViewController: UICollectionViewDelegate {
         updateCell(having: indexPath, selected: true)
         
         currentSelection = vendingMachine.selection[indexPath.row]
+        
+        if let currentSelection = currentSelection, let item = vendingMachine.item(forSelection: currentSelection) {
+            priceLabel.text = "$\(item.price)"
+            quantityLabel.text = "$\(item.quantity)"
+            totalLabel.text = "$\(item.price * Double(quantity))"
+        }
         
     }
     
