@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		4103F3291E1AD2900068BED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4103F3281E1AD2900068BED9 /* AppDelegate.swift */; };
 		4103F32B1E1AD2900068BED9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4103F32A1E1AD2900068BED9 /* ViewController.swift */; };
-		4103F32E1E1AD2900068BED9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4103F32C1E1AD2900068BED9 /* Main.storyboard */; };
 		4103F3301E1AD2900068BED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4103F32F1E1AD2900068BED9 /* Assets.xcassets */; };
 		4103F3331E1AD2900068BED9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4103F3311E1AD2900068BED9 /* LaunchScreen.storyboard */; };
+		41DA6EA61E1B96B300D2371C /* VendingInventory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41DA6EA51E1B96B300D2371C /* VendingInventory.plist */; };
+		41DA6EAA1E1B974500D2371C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DA6EA91E1B974500D2371C /* Main.storyboard */; };
+		41DA6EAC1E1B976E00D2371C /* VendingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DA6EAB1E1B976E00D2371C /* VendingItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4103F3251E1AD2900068BED9 /* Vending Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vending Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4103F3281E1AD2900068BED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4103F32A1E1AD2900068BED9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4103F32D1E1AD2900068BED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4103F32F1E1AD2900068BED9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4103F3321E1AD2900068BED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4103F3341E1AD2900068BED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41DA6EA51E1B96B300D2371C /* VendingInventory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VendingInventory.plist; sourceTree = "<group>"; };
+		41DA6EA91E1B974500D2371C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		41DA6EAB1E1B976E00D2371C /* VendingItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		41DA6EA01E1B95C400D2371C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				41DA6EA51E1B96B300D2371C /* VendingInventory.plist */,
 				4103F32F1E1AD2900068BED9 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -100,7 +105,8 @@
 		41DA6EA31E1B95E100D2371C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4103F32C1E1AD2900068BED9 /* Main.storyboard */,
+				41DA6EA91E1B974500D2371C /* Main.storyboard */,
+				41DA6EAB1E1B976E00D2371C /* VendingItemCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -173,8 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4103F3331E1AD2900068BED9 /* LaunchScreen.storyboard in Resources */,
+				41DA6EA61E1B96B300D2371C /* VendingInventory.plist in Resources */,
 				4103F3301E1AD2900068BED9 /* Assets.xcassets in Resources */,
-				4103F32E1E1AD2900068BED9 /* Main.storyboard in Resources */,
+				41DA6EAA1E1B974500D2371C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,20 +194,13 @@
 			files = (
 				4103F32B1E1AD2900068BED9 /* ViewController.swift in Sources */,
 				4103F3291E1AD2900068BED9 /* AppDelegate.swift in Sources */,
+				41DA6EAC1E1B976E00D2371C /* VendingItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4103F32C1E1AD2900068BED9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4103F32D1E1AD2900068BED9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4103F3311E1AD2900068BED9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -309,6 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 69CH9UTLK7;
 				INFOPLIST_FILE = "Vending Machine/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Moaz.Vending-Machine";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -322,6 +323,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 69CH9UTLK7;
 				INFOPLIST_FILE = "Vending Machine/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Moaz.Vending-Machine";
 				PRODUCT_NAME = "$(TARGET_NAME)";
