@@ -12,6 +12,10 @@ enum VendingSelection {
     case soda, dietSoda, chips, cookie, sandwich, wrap, candyBar, popTart, water, fruitJuice, sportsDrink, gum
 }
 
+enum InventoryError: Error {
+    case invalidResource, conversionFailure
+}
+
 protocol VendingItem {
     var price: Double { get }
     var quantity: Int { get set }
@@ -30,6 +34,16 @@ protocol VendingMachine {
 struct Item: VendingItem {
     let price: Double
     var quantity: Int
+}
+
+class PlistConverter {
+    static func dictionary(fromFile name: String, ofType type: String) throws -> [String: AnyObject] {
+        guard let path = Bundle.main.path(forResource: name, ofType: type) else { throw InventoryError.invalidResource }
+        
+        guard let dictionary = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else { throw InventoryError.conversionFailure }
+        
+        return dictionary
+    }
 }
 
 class FoodVendingMaching: VendingMachine {
