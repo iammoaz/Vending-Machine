@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        collectionView.dataSource = self
+        collectionView.delegate = self
         setupCollectionViewCells()
     }
 
@@ -41,9 +43,48 @@ class ViewController: UIViewController {
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        
+
         collectionView.collectionViewLayout = layout
     }
-
 }
 
+// MARK: - UICollectionView - DataSource
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VendingItemCell.reuseIdentifier, for: indexPath) as? VendingItemCell else { fatalError() }
+        
+        return cell
+    }
+}
+
+// MARK: - UICollectionView - Delegate
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        updateCell(having: indexPath, selected: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        updateCell(having: indexPath, selected: false)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        updateCell(having: indexPath, selected: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        updateCell(having: indexPath, selected: false)
+    }
+    
+    func updateCell(having indexPath: IndexPath, selected: Bool) {
+        let selectedBackgroundColor = UIColor(red: 41/255.0, green: 211/255.0, blue: 241/255.0, alpha: 1.0)
+        let defaultBackgroundColor = UIColor(red: 27/255.0, green: 32/255.0, blue: 36/255.0, alpha: 1.0)
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.contentView.backgroundColor = selected ? selectedBackgroundColor : defaultBackgroundColor
+        }
+    }
+}
