@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     
     fileprivate let vendingMachine: VendingMachine
+    fileprivate var currentSelection: VendingSelection?
+    fileprivate var quantity: Int = 1
     
     required init?(coder aDecoder: NSCoder) {
         do {
@@ -63,6 +65,20 @@ class ViewController: UIViewController {
 
         collectionView.collectionViewLayout = layout
     }
+    
+    // MARK: - Vending Machine
+    @IBAction func purchase() {
+        guard let currentSelection = currentSelection else {
+            return
+            // FIXME: Alert user to no selection
+        }
+        
+        do {
+            try vendingMachine.vend(selection: currentSelection, quantity: quantity)
+        } catch let error {
+            print(error)
+        }
+    }
 }
 
 // MARK: - UICollectionView - DataSource
@@ -83,6 +99,9 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         updateCell(having: indexPath, selected: true)
+        
+        currentSelection = vendingMachine.selection[indexPath.row]
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
