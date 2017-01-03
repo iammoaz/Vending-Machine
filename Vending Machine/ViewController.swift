@@ -90,8 +90,10 @@ class ViewController: UIViewController {
         let value = item.price * quantityStepper.value
         updateDisplayWith(totalPrice: value)
     }
-    
-    // MARK: - Actions
+}
+
+// MARK: - Actions
+extension ViewController {
     @IBAction func purchase() {
         guard let currentSelection = currentSelection else {
             return
@@ -124,6 +126,11 @@ class ViewController: UIViewController {
         if let currentSelection = currentSelection, let item = vendingMachine.item(forSelection: currentSelection) {
             updateTotalPrice(for: item)
         }
+    }
+
+    @IBAction func depositFunds() {
+        vendingMachine.deposit(5.0)
+        updateDisplayWith(balance: vendingMachine.amountDeposited)
     }
 }
 
