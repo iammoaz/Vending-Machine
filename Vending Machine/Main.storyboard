@@ -133,7 +133,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="OwQ-j5-L1r">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="OwQ-j5-L1r">
                                                             <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                         </imageView>
                                                     </subviews>
@@ -182,7 +182,7 @@
                                             <constraint firstAttribute="height" constant="56" id="Vx8-ir-73J"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Purchase"/>
+                                        <state key="normal" title="PURCHASE"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -219,6 +219,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="default" width="187" height="187"/>
+        <image name="Default" width="187" height="187"/>
     </resources>
 </document>
