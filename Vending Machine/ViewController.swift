@@ -17,10 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var quantityStepper: UIStepper!
     
     fileprivate let vendingMachine: VendingMachine
     fileprivate var currentSelection: VendingSelection?
-    fileprivate var quantity: Int = 1
     
     required init?(coder aDecoder: NSCoder) {
         do {
@@ -44,9 +44,7 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         setupCollectionViewCells()
         
-        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
-        totalLabel.text = "$00.00"
-        priceLabel.text = "0.00"
+        updateDisplayWith(balance: vendingMachine.amountDeposited, totalPrice: 0, itemPrice: 0, itemQuantity: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,13 +68,30 @@ class ViewController: UIViewController {
         collectionView.collectionViewLayout = layout
     }
     
-    func updateDisplay() {
-        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
-        totalLabel.text = "$00.00"
-        priceLabel.text = "0.00"
+    func updateDisplayWith(balance: Double? = nil, totalPrice: Double? = nil, itemPrice: Double? = nil, itemQuantity: Int? = nil) {
+        if let balanceValue = balance {
+            balanceLabel.text = "$\(balanceValue)"
+        }
+        
+        if let totalValue = totalPrice {
+            totalLabel.text = "$\(totalValue)"
+        }
+        
+        if let priceValue = itemPrice {
+            priceLabel.text = "$\(priceValue)"
+        }
+        
+        if let quantityValue = itemQuantity {
+            quantityLabel.text = "\(quantityValue)"
+        }
     }
     
-    // MARK: - Vending Machine
+    func updateTotalPrice(for item: VendingItem) {
+        let value = item.price * quantityStepper.value
+        updateDisplayWith(totalPrice: value)
+    }
+    
+    // MARK: - Actions
     @IBAction func purchase() {
         guard let currentSelection = currentSelection else {
             return
@@ -84,8 +99,8 @@ class ViewController: UIViewController {
         }
         
         do {
-            try vendingMachine.vend(selection: currentSelection, quantity: quantity)
-            updateDisplay()
+            try vendingMachine.vend(selection: currentSelection, quantity: Int(quantityStepper.value))
+            updateDisplayWith(balance: vendingMachine.amountDeposited, totalPrice: 0.0, itemPrice: 0, itemQuantity: 1)
         } catch let error {
             print(error)
         }
@@ -93,6 +108,15 @@ class ViewController: UIViewController {
         if let indexPath = collectionView.indexPathsForSelectedItems?.first {
             collectionView.deselectItem(at: indexPath, animated: true)
             updateCell(having: indexPath, selected: false)
+        }
+    }
+    
+    @IBAction func updateQuantity(_ sender: UIStepper) {
+        let quantity = Int(quantityStepper.value)
+        updateDisplayWith(itemQuantity: quantity)
+        
+        if let currentSelection = currentSelection, let item = vendingMachine.item(forSelection: currentSelection) {
+            updateTotalPrice(for: item)
         }
     }
 }
@@ -116,14 +140,15 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         updateCell(having: indexPath, selected: true)
         
+        quantityStepper.value = 1
+        updateDisplayWith(totalPrice: 0, itemQuantity: 1)
+        
         currentSelection = vendingMachine.selection[indexPath.row]
         
         if let currentSelection = currentSelection, let item = vendingMachine.item(forSelection: currentSelection) {
-            priceLabel.text = "$\(item.price)"
-            quantityLabel.text = "$\(item.quantity)"
-            totalLabel.text = "$\(item.price * Double(quantity))"
+            let totalPrice = item.price * quantityStepper.value
+            updateDisplayWith(totalPrice: totalPrice, itemPrice: item.price)
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
