@@ -101,8 +101,14 @@ class ViewController: UIViewController {
         do {
             try vendingMachine.vend(selection: currentSelection, quantity: Int(quantityStepper.value))
             updateDisplayWith(balance: vendingMachine.amountDeposited, totalPrice: 0.0, itemPrice: 0, itemQuantity: 1)
-        } catch let error {
-            print(error)
+        } catch VendingMachineError.outOfStock {
+            showAlertWith(title: "Out of stock", message: "This item is unavailable. Please make another selection")
+        } catch VendingMachineError.invalidSelection {
+            showAlertWith(title: "Invalid Selection", message: "Please make another selection")
+        } catch VendingMachineError.insufficientFunds(let required) {
+            showAlertWith(title: "Insufficient Funds", message: "You need $\(required) to complete the transaction")
+        } catch {
+            fatalError("\(error)")
         }
         
         if let indexPath = collectionView.indexPathsForSelectedItems?.first {
@@ -118,6 +124,19 @@ class ViewController: UIViewController {
         if let currentSelection = currentSelection, let item = vendingMachine.item(forSelection: currentSelection) {
             updateTotalPrice(for: item)
         }
+    }
+}
+
+extension ViewController {
+    func showAlertWith(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: dismissAlert)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func dismissAlert(sender: UIAlertAction) -> Void {
+        updateDisplayWith(balance: 0, totalPrice: 0, itemPrice: 0, itemQuantity: 0)
     }
 }
 
