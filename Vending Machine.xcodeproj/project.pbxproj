@@ -14,6 +14,7 @@
 		41DA6EA61E1B96B300D2371C /* VendingInventory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41DA6EA51E1B96B300D2371C /* VendingInventory.plist */; };
 		41DA6EAA1E1B974500D2371C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DA6EA91E1B974500D2371C /* Main.storyboard */; };
 		41DA6EAC1E1B976E00D2371C /* VendingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DA6EAB1E1B976E00D2371C /* VendingItemCell.swift */; };
+		41DA6EAE1E1B9D6900D2371C /* VendingMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DA6EAD1E1B9D6900D2371C /* VendingMachine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		41DA6EA51E1B96B300D2371C /* VendingInventory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VendingInventory.plist; sourceTree = "<group>"; };
 		41DA6EA91E1B974500D2371C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		41DA6EAB1E1B976E00D2371C /* VendingItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingItemCell.swift; sourceTree = "<group>"; };
+		41DA6EAD1E1B9D6900D2371C /* VendingMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		41DA6EA41E1B95E600D2371C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				41DA6EAD1E1B9D6900D2371C /* VendingMachine.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				4103F32B1E1AD2900068BED9 /* ViewController.swift in Sources */,
 				4103F3291E1AD2900068BED9 /* AppDelegate.swift in Sources */,
 				41DA6EAC1E1B976E00D2371C /* VendingItemCell.swift in Sources */,
+				41DA6EAE1E1B9D6900D2371C /* VendingMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
