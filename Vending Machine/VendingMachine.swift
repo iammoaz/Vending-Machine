@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum VendingSelection {
+enum VendingSelection: String {
     case soda, dietSoda, chips, cookie, sandwich, wrap, candyBar, popTart, water, fruitJuice, sportsDrink, gum
 }
 
 enum InventoryError: Error {
-    case invalidResource, conversionFailure
+    case invalidResource, conversionFailure, invalidSelection
 }
 
 protocol VendingItem {
@@ -43,6 +43,21 @@ class PlistConverter {
         guard let dictionary = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else { throw InventoryError.conversionFailure }
         
         return dictionary
+    }
+}
+
+class InventoryUnarchiver {
+    static func vendingInventory(fromDictionary dictionary: [String: AnyObject]) throws -> [VendingSelection: VendingItem] {
+        var inventory: [VendingSelection: VendingItem] = [:]
+        
+        for (key, value) in dictionary {
+            if let itemDictionary = value as? [String: Any], let price = itemDictionary["price"] as? Double, let quantity = itemDictionary["quantity"] as? Int {
+                let item = Item(price: price, quantity: quantity)
+                guard let selection = VendingSelection(rawValue: key) else { throw InventoryError.invalidSelection }
+                inventory.updateValue(item, forKey: selection)
+            }
+        }
+        return inventory
     }
 }
 

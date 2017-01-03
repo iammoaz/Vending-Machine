@@ -18,6 +18,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    fileprivate let vendingMachine: VendingMachine
+    
+    required init?(coder aDecoder: NSCoder) {
+        do {
+            let dictionary = try PlistConverter.dictionary(fromFile: "VendingInventory", ofType: "plist")
+            let inventory = try InventoryUnarchiver.vendingInventory(fromDictionary: dictionary)
+            self.vendingMachine = FoodVendingMaching(inventory: inventory)
+        } catch let error {
+            fatalError("\(error)")
+        }
+        super.init(coder: aDecoder)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -55,7 +68,7 @@ class ViewController: UIViewController {
 // MARK: - UICollectionView - DataSource
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return vendingMachine.selection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
