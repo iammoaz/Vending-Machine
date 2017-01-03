@@ -54,14 +54,62 @@
 		4103F3271E1AD2900068BED9 /* Vending Machine */ = {
 			isa = PBXGroup;
 			children = (
+				41DA6EA41E1B95E600D2371C /* Model */,
+				41DA6EA31E1B95E100D2371C /* View */,
+				41DA6EA21E1B95DB00D2371C /* Controller */,
+				41DA6EA11E1B95CE00D2371C /* Helpers */,
+				41DA6EA01E1B95C400D2371C /* Resources */,
+				41DA6E9F1E1B95B600D2371C /* Supporting Files */,
+			);
+			path = "Vending Machine";
+			sourceTree = "<group>";
+		};
+		41DA6E9F1E1B95B600D2371C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				4103F3281E1AD2900068BED9 /* AppDelegate.swift */,
-				4103F32A1E1AD2900068BED9 /* ViewController.swift */,
-				4103F32C1E1AD2900068BED9 /* Main.storyboard */,
-				4103F32F1E1AD2900068BED9 /* Assets.xcassets */,
 				4103F3311E1AD2900068BED9 /* LaunchScreen.storyboard */,
 				4103F3341E1AD2900068BED9 /* Info.plist */,
 			);
-			path = "Vending Machine";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41DA6EA01E1B95C400D2371C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4103F32F1E1AD2900068BED9 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		41DA6EA11E1B95CE00D2371C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		41DA6EA21E1B95DB00D2371C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4103F32A1E1AD2900068BED9 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		41DA6EA31E1B95E100D2371C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4103F32C1E1AD2900068BED9 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		41DA6EA41E1B95E600D2371C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +348,7 @@
 				4103F3391E1AD2900068BED9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
